@@ -6,7 +6,7 @@ A full-stack Node.js/Express application for creating and browsing travel listin
 ⚡ Overview
 
 **Tech Stack:**
-Node.js · Express · MongoDB (Mongoose) · EJS · Passport · Cloudinary · Leaflet/MapTiler
+Node.js · Express · MongoDB (Mongoose) · EJS · Passport · Cloudinary · Mapbox
 
 **Key Features:**
 
@@ -39,13 +39,13 @@ Prerequisites
 - Node.js (v16+)
 - npm or yarn
 - MongoDB (local or Atlas)
--- Optional: Cloudinary & MapTiler accounts
+-- Optional: Cloudinary & Mapbox accounts
 
 Installation
 
 ```powershell
 # Clone repo & install dependencies
-git clone https://github.com/abhi-2028/WanderLust.git
+git clone https://github.com/Nikhil-Malviya09/Wanderlust.git
 cd WanderLust
 npm install
 ```
@@ -61,7 +61,7 @@ SECRET=your-session-secret
 CLOUDINARY_CLOUD_NAME=your-cloud-name
 CLOUDINARY_KEY=your-cloud-key
 CLOUDINARY_SECRET=your-cloud-secret
-MAPTILER_KEY=your-maptile-api-key
+MAP_TOKEN=your-mapbox-api-key
 ```
 
 (Cloudinary/Mapbox are optional — provide mock values for local testing.)
@@ -129,7 +129,7 @@ For exact implementations and middleware checks see the `routes/` and `controlle
 |---|---|
 | MongoNetworkError | Check `MONGO_URI` and MongoDB service |
 | Cloudinary upload fails | Verify `CLOUDINARY_*` credentials |
-| Map not showing | Ensure `MAPTILER_KEY` (if using MapTiler) or Leaflet tile provider setup; check `public/JS/map.js` for the tile URL and key placement |
+| Map not showing | Ensure `MAPBOX_KEY` (if using MapTiler) or Leaflet tile provider setup; check `public/JS/map.js` for the tile URL and key placement |
 | Sessions not persisting | Confirm `SECRET` and session store config |
 
 🤝 Contributing
@@ -147,6 +147,6 @@ Licensed under the MIT License. See `LICENSE` for details.
 
 👤 Author
 
-Repository Owner: `@abhi-2028`
+Repository Owner: `Nikhil-Malviya09`
 
 For questions or feature requests, open an issue on GitHub.

@@ -20,7 +20,8 @@ const reviewRouter = require("./routes/review");
 const listingRouter = require("./routes/listing");
 const userRouter = require('./routes/user');
 
-const dbUrl = process.env.ATLAS_DB_URL;
+// const MONGO_URL = "mongodb://127.0.0.1:27017/Wanderlust";
+const dbUrl = process.env.ATLASDB_URL;
 
 main()
 .then(() => {
