@@ -136,3 +136,9 @@ body{
     height: 400px;
     width: 100%;
 }
+
+.special:hover{
+ text-decoration: underline !important;
+ cursor: pointer !important;
+ font-weight: bold !important; 
+}
