@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 body{
     display: flex;
     flex-direction: column;
@@ -135,4 +136,10 @@ body{
 #map {
     height: 400px;
     width: 100%;
+}
+
+.special:hover{
+ text-decoration: underline !important;
+ cursor: pointer !important;
+ font-weight: bold !important; 
 }
