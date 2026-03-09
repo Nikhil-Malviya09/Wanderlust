@@ -56,12 +56,14 @@ Create a `.env` file in the root directory:
 
 ```text
 MONGO_URI=mongodb://localhost:27017/wanderlust
-PORT=3000
+PORT=8080
 SECRET=your-session-secret
 CLOUDINARY_CLOUD_NAME=your-cloud-name
 CLOUDINARY_KEY=your-cloud-key
 CLOUDINARY_SECRET=your-cloud-secret
 MAP_TOKEN=your-mapbox-api-key
+EMAIL=your_email@gmail.com
+EMAIL_PASSWORD=your_password
 ```
 
 (Cloudinary/Mapbox are optional — provide mock values for local testing.)
@@ -80,7 +82,7 @@ Production:
 npm start
 ```
 
-The app runs at http://localhost:3000 by default.
+The app runs at http://localhost:8080 by default.
 
 You can also inline environment variables (PowerShell example):
 
@@ -117,6 +119,8 @@ Users
 |---|---|---:|:---:|
 | GET | /register | Show registration form | No |
 | POST | /register | Register a new user | No |
+| GET | /verify | Show verification form | No |
+| POST | /verify | Verified a new user | No |
 | GET | /login | Show login form | No |
 | POST | /login | Log in | No |
 | GET | /logout | Log out current user | Yes |
