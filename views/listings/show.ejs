@@ -87,25 +87,6 @@
           <hr>
           <% } %>
 
-            <% if(listing.reviews.length> 0) { %>
-              <div class="row">
-                <p><b>All Reviews</b></p>
-                <% for(review of listing.reviews) { %>
-                  <div class="card col-5 mb-3 ms-3">
-                    <div class="card-body">
-                      <p class="card-title"> <span class="special"><i class="fa-solid fa-circle-user"></i>
-                          <%= review.author.username %>
-                        </span>
-                      </p>
-                      <p class="starability-result" data-rating="<%=review.rating%>">
-                      </p>
-                      <p class="card-text">
-                        <%= review.comment %>
-                      </p>
-                      <form class="mb-3" method="POST"
-                        action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=DELETE">
-                        <button class="btn btn-sm btn-outline-dark"><i class="fa-solid fa-trash-can"></i></button>
-                      </form>
               <% if(listing.reviews.length> 0) { %>
                 <div class="row">
                   <p><b>All Reviews</b></p>
