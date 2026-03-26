@@ -1,17 +1,17 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
+body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     font-family: "Plus Jakarta Sans", sans-serif !important;
 }
 
-.container{
+.container {
     flex: 1;
 }
 
@@ -21,26 +21,28 @@ body{
     background-color: white;
 }
 
-.fa-compass{
+.fa-compass {
     color: #fe424d;
     font-size: 2rem;
 }
 
-.nav-link{
-    color: #222222 !important; 
+.nav-link {
+    color: #222222 !important;
 }
 
 /* Footer */
-.f-info-links a{
+.f-info-links a {
     text-decoration: none;
     color: #222222;
 }
 
-.f-info-links a:hover{
+.f-info-links a:hover {
     text-decoration: underline;
 }
 
-.f-info-links, .f-info-socials, .f-info-brand{
+.f-info-links,
+.f-info-socials,
+.f-info-brand {
     width: 100%;
     display: flex;
     align-items: center;
@@ -60,7 +62,7 @@ body{
     text-decoration: none;
 }
 
-.f-info{
+.f-info {
     text-align: center;
     height: 8rem;
     background-color: #ebebeb;
@@ -71,12 +73,12 @@ body{
 }
 
 /* Cards */
-.listing-card{
+.listing-card {
     border: none !important;
     margin-bottom: 2rem;
 }
 
-.card-img-top{
+.card-img-top {
     border-radius: 1rem !important;
     width: 100% !important;
     object-fit: cover !important;
@@ -86,7 +88,7 @@ body{
     padding: 0 !important;
 }
 
-.card-text p{
+.card-text p {
     font-weight: 400 !important;
 }
 
@@ -99,47 +101,114 @@ body{
     opacity: 0;
 }
 
-.card-img-overlay:hover{
+.card-img-overlay:hover {
     transition: 0.2s;
     opacity: 0.2;
     background-color: white;
 }
 
 /* New Page */
-.add-btn{
+.add-btn {
     background-color: #fe424d !important;
     border: none !important;
 }
 
 /* Edit Page */
-.edit-btn{
+.edit-btn {
     background-color: #fe424d !important;
     border: none !important;
 }
 
 /* Show Page */
-.show-img{
+.show-img {
     height: 40vh;
 }
 
-.btns{
+.btns {
     display: flex;
 }
 
-.show-card{
+.show-card {
     padding-left: 0;
     padding-right: 0;
 }
 
 /* Map */
-
 #map {
     height: 400px;
     width: 100%;
 }
 
-.special:hover{
- text-decoration: underline !important;
- cursor: pointer !important;
- font-weight: bold !important; 
+.special:hover {
+    text-decoration: underline !important;
+    cursor: pointer !important;
+    font-weight: bold !important;
+}
+
+/* Profile Menu */
+.user-menu {
+    border-radius: 30px;
+    padding: 6px 12px;
+    transition: all 0.2s ease;
+}
+
+.user-menu:hover {
+    background-color: #f7f7f7;
+}
+
+.dropdown-menu {
+    border-radius: 12px;
+    min-width: 220px;
+}
+
+.dropdown-item {
+    border-radius: 8px;
+    padding: 8px 10px;
+    transition: background 0.2s ease;
+}
+
+.dropdown-item:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown-menu {
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+/* Login button (minimal style) */
+.login-btn {
+    border-radius: 20px;
+    transition: all 0.2s ease;
+}
+
+.login-btn:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: #000;
+}
+
+/* Signup button (primary CTA) */
+.signup-btn {
+    background-color: #fe424d;
+    color: rgb(211, 50, 50);
+    font-weight: 600 !important;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    border: none;
 }

@@ -1,22 +1,22 @@
 <style>
-  .search-btn{
+  .search-btn {
     background-color: #fe424d;
     color: white;
     border-radius: 20px;
     padding: 0 1rem 0 1rem;
   }
 
-  .search-btn:hover{
+  .search-btn:hover {
     background-color: #a8232c;
     color: white;
   }
 
-  .search-btn i{
+  .search-btn i {
     display: inline;
     margin-right: 0.5rem;
   }
 
-  .search-input{
+  .search-input {
     border-radius: 20px;
     padding: 0.5rem 4rem 0.5rem 5.5rem;
     font-size: 1rem;
@@ -35,20 +35,100 @@
       </div>
       <div class="navbar-nav ms-auto">
         <form class="d-flex" role="search">
-        <input class="form-control me-2 search-input" type="search" placeholder="Search destinations" aria-label="Search" />
-        <button class="btn search-btn" type="submit"><i  class="fa-solid fa-magnifying-glass"></i>Search</button>
-      </form>
+          <input class="form-control me-2 search-input" type="search" placeholder="Search destinations"
+            aria-label="Search" />
+          <button class="btn search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+        </form>
       </div>
-      
+
       <div class="navbar-nav ms-auto">
         <a class="nav-link" href="/listings/new">Wandero your home</a>
         <% if(!currUser) { %>
-          <a class="nav-link active" href="/signup"><b>Sign up</b></a>
-          <a class="nav-link" href="/login"><b>Log in</b></a>
+          <a class="nav-link login-btn" href="/login"><b><i class="fa-solid fa-right-to-bracket"></i> Log in</b></a>
+          <a class="btn signup-btn" href="/signup"><i class="fa-solid fa-user-plus"></i> Sign up</a>
           <% } %>
+
+
+          <!-- Profile Menu -->
             <% if(currUser) { %>
-              <a class="nav-link" href="/logout"><b>Log out</b></a>
+              <div class="nav-item dropdown">
+                <a class="nav-link d-flex align-items-center gap-2 dropdown-toggle user-menu" href="#" role="button"
+                  data-bs-toggle="dropdown" aria-expanded="false">
+
+                  <img src="<%= currUser.avatar ||  " https://images.unsplash.com/photo-1633332755192-727a05c4013d" %>"
+                  class="rounded-circle border"
+                  width="32"
+                  height="32"
+                  style="object-fit: cover;"
+                  />
+                  <!-- <span class="fw-semibold">
+                    <%= currUser.username %>
+                  </span> -->
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 p-2">
+
+                  <!-- User Info -->
+                  <li class="px-3 py-2">
+                    <div class="fw-semibold">
+                      <%= currUser.username %>
+                    </div>
+                    <small class="text-muted">
+                      <%= currUser.email %>
+                    </small>
+                  </li>
+
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+
+                  <!-- Menu Options -->
+                  <li>
+                    <a class="dropdown-item d-flex align-items-center gap-2" href="/profile">
+                      <i class="fa-regular fa-user"></i> Profile
+                    </a>
+                  </li>
+
+                  <li>
+                    <a class="dropdown-item d-flex align-items-center gap-2" href="/privacy">
+                      <i class="fa-solid fa-shield-halved"></i> Privacy
+                    </a>
+                  </li>
+
+                  <li>
+                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="#"
+                      onclick="toggleMode()">
+                      <span class="d-flex align-items-center gap-2">
+                        <i class="fa-solid fa-moon"></i> Mode
+                      </span>
+                      <span id="mode-text" class="small text-muted">Dark</span>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a class="dropdown-item d-flex align-items-center gap-2" href="/settings">
+                      <i class="fa-solid fa-gear"></i> Settings
+                    </a>
+                  </li>
+
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+
+                  <!-- Logout -->
+                  <li>
+                    <a class="dropdown-item text-danger d-flex align-items-center gap-2" href="/logout">
+                      <i class="fa-solid fa-right-from-bracket"></i> Logout
+                    </a>
+                  </li>
+
+                </ul>
+              </div>
               <% } %>
+
+                <!-- <% if(currUser) { %>
+              <a class="nav-link" href="/logout"><b>Log out</b></a>
+              <% } %> -->
       </div>
     </div>
   </div>
