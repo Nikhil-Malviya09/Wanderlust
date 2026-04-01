@@ -5,13 +5,28 @@ const geocodingClient = mbxGeocoding({ accessToken: mapToken });
 
 
 module.exports.index = async (req, res) => {
-     const { category } = req.query;
-    if (category) {
-        allListings = await Listing.find({ category });
-    } else {
-        allListings = await Listing.find({});
-    }
-    res.render("./listings/index.ejs", { allListings, category });
+  const { category } = req.query;
+
+  let query = {};
+
+  // 👑 ADMIN → only their listings
+  if (req.user && req.user.role === "admin") {
+    query.owner = req.user._id;
+  }
+
+  // 👤 USER → exclude their own listings
+  else if (req.user && req.user.role === "user") {
+    query.owner = { $ne: req.user._id };
+  }
+
+  // 🔵 Category filter
+  if (category) {
+    query.category = category;
+  }
+
+  const allListings = await Listing.find(query);
+
+  res.render("./listings/index.ejs", { allListings, category });
 };
 
 module.exports.renderNewForm = (req, res) => {

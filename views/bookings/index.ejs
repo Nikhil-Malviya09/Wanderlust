@@ -1,0 +1,187 @@
+<% layout("/layouts/boilerplate") %>
+
+    <style>
+        /* Container Padding */
+        .container {
+            padding: 0 40px;
+        }
+
+        /* Booking Card */
+        .booking-card {
+            border-radius: 16px;
+            overflow: hidden;
+            border: none;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: 0.3s ease;
+        }
+
+        .booking-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Image */
+        .booking-img {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        /* Dates Box */
+        .booking-dates-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .date-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .label {
+            font-size: 0.7rem;
+            color: #888;
+        }
+
+        .date {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .divider {
+            width: 1px;
+            height: 30px;
+            background-color: #ddd;
+        }
+
+        /* Price Section */
+        .price-breakdown {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .booking-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .total-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .per-night {
+            font-size: 0.75rem;
+            color: #888;
+        }
+
+        /* Status Badge */
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: #e6f7ee;
+            color: #1a7f37;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+        }
+
+        .card-body {
+            padding: 22px 20px;
+        }
+    </style>
+
+    <div class="container mt-4">
+
+        <h4 class="mb-4 fw-bold">My Bookings</h4>
+
+        <% if (bookings.length===0) { %>
+            <div class="text-center mt-5">
+                <h5>No bookings yet</h5>
+                <a href="/listings" class="btn btn-danger mt-3">Book Now</a>
+            </div>
+            <% } %>
+
+                <div class="row g-4">
+                    <% bookings.forEach(b=> { %>
+
+                        <div class="col-lg-4 col-md-6">
+
+                            <div class="card booking-card h-100">
+
+                                <img src="<%= b.listing.image.url %>" class="card-img-top booking-img">
+
+                                <div class="card-body">
+
+                                    <h5 class="fw-semibold">&nbsp;<%= b.listing.title %>
+                                    </h5>
+
+                                    <p class="text-muted mb-2"> <i class="fa-solid fa-location-dot"></i>
+                                        <%= b.listing.location %>
+                                    </p>
+
+                                    <div class="booking-dates-box">
+
+                                        <div class="date-item">
+                                            <span class="label">Check-in</span>
+                                            <span class="date">
+                                                <%= b.checkIn.toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"})
+                                                    %>
+                                            </span>
+                                        </div>
+
+                                        <div class="divider"></div>
+
+                                        <div class="date-item">
+                                            <span class="label">Check-out</span>
+                                            <span class="date">
+                                                <%= b.checkOut.toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"})
+                                                    %>
+                                            </span>
+                                        </div>
+
+                                    </div>
+
+                                    <% const nights=Math.ceil((new Date(b.checkOut) - new Date(b.checkIn)) /
+                                        (1000*60*60*24)); %>
+
+                                        <p class="price-breakdown">
+                                            &nbsp; ₹<%= (b.totalPrice / nights).toLocaleString("en-IN") %> &times; <%= nights
+                                                    %> nights
+                                        </p>
+
+                                        <div class="booking-footer">
+
+                                            <div>
+                                                <div class="total-price">
+                                                    &nbsp; ₹<%= b.totalPrice.toLocaleString("en-IN") %>
+                                                </div>
+                                                <div class="per-night">&nbsp;&nbsp;&nbsp;&nbsp;Total</div>
+                                            </div>
+
+                                            <div class="status-badge">
+                                                <i class="fa-solid fa-circle-check"></i>
+                                                Confirmed
+                                            </div>
+
+                                        </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <% }) %>
+                </div>
+
+    </div>
+    <br>

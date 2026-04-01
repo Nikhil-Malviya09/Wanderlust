@@ -1,0 +1,128 @@
+<% layout("/layouts/boilerplate") %>
+
+<style>
+  /* Stat Cards */
+.stat-card {
+  border: none;
+  border-radius: 16px;
+  padding: 20px;
+  color: white;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.listings-card {
+  background: linear-gradient(135deg, #ff7a7a, #fe424d);
+}
+
+.bookings-card {
+  background: linear-gradient(135deg, #4facfe, #00c6ff);
+}
+
+.stat-icon {
+  font-size: 2rem;
+  opacity: 0.8;
+}
+
+/* Booking List */
+.booking-item {
+  transition: all 0.2s ease;
+}
+
+.booking-item:hover {
+  background-color: #f8f9fa;
+}
+
+.booking-img {
+  width: 55px;
+  height: 55px;
+  object-fit: cover;
+}
+</style>
+
+<div class="container mt-4">
+
+  <h4 class="fw-bold mb-4">Dashboard</h4>
+
+  <!-- Stats -->
+  <div class="row g-4 mb-4">
+
+    <!-- Listings -->
+    <div class="col-md-6">
+      <div class="card stat-card listings-card">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h6>Total Listings</h6>
+            <h2><%= totalListings %></h2>
+          </div>
+          <i class="fa-solid fa-house stat-icon"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bookings -->
+    <div class="col-md-6">
+      <div class="card stat-card bookings-card">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h6>Total Bookings</h6>
+            <h2><%= totalBookings %></h2>
+          </div>
+          <i class="fa-solid fa-calendar-check stat-icon"></i>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Recent Activity -->
+  <h5 class="mb-3 fw-semibold">Recent Bookings</h5>
+
+   <% if (recentBookings.length===0) { %>
+            <div class="text-center mt-5">
+                <h6 style="opacity: 0.5;">No bookings yet</h6>
+                
+            </div>
+            <% } %>
+
+  <div class="card shadow-sm border-0">
+    <ul class="list-group list-group-flush">
+
+      <% recentBookings.forEach(b => { %>
+        <li class="list-group-item d-flex justify-content-between align-items-center booking-item">
+
+          <div class="d-flex align-items-center gap-3">
+
+            <img 
+              src="<%= b.listing.image.url %>" 
+              class="booking-img rounded"
+            >
+
+            <div>
+              <div class="fw-semibold">
+                <%= b.user.username %>
+              </div>
+              <small class="text-muted">
+                booked <%= b.listing.title %>
+              </small>
+            </div>
+
+          </div>
+
+          <div class="text-end">
+            <div class="fw-bold text-success">
+              ₹<%= b.totalPrice.toLocaleString("en-IN") %>
+            </div>
+            <small class="text-muted">
+              <%= b.checkIn.toDateString() %>
+            </small>
+          </div>
+
+        </li>
+      <% }) %>
+
+    </ul>
+  </div>
+
+</div>
+
+<br>

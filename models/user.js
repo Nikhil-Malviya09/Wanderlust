@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const passportLocalMongoose = require('passport-local-mongoose');
 
 const userSchema = new Schema({
-     email: {
+    email: {
         type: String,
         required: true,
         unique: true
@@ -20,6 +20,12 @@ const userSchema = new Schema({
 
     otpExpiry: {
         type: Date
+    },
+
+    role: {
+        type: String,
+        enum: ["user", "admin"],
+        default: "user"
     }
 });
 
