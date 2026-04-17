@@ -16,14 +16,20 @@ router.get("/", async (req, res) => {
       owner: req.user._id
     });
 
+    const adminListings = await Listing.find({
+      owner: req.user._id
+    }).select("_id");
+
+    const listingIds = adminListings.map(listing => listing._id);
+
     // ✅ Bookings made by OTHER users (not admin)
     const totalBookings = await Booking.countDocuments({
-      user: { $ne: req.user._id }
+      listing: { $in: listingIds }
     });
 
     // ✅ Recent bookings by OTHER users
     const recentBookings = await Booking.find({
-      user: { $ne: req.user._id }
+      listing: { $in: listingIds }
     })
       .populate("listing user")
       .sort({ createdAt: -1 })

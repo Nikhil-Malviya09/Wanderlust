@@ -13,7 +13,7 @@ module.exports.signupUser = async (req, res) => {
 
         let { username, email, password } = req.body;
 
-          // check existing email
+        // check existing email
         const existingUser = await User.findOne({ email });
 
         if (existingUser) {
@@ -27,6 +27,8 @@ module.exports.signupUser = async (req, res) => {
             specialChars: false,
             lowerCaseAlphabets: false
         });
+        // console.log(`OTP : ${otp}`);
+
 
         // store signup data temporarily
         req.session.signupData = {
@@ -37,8 +39,14 @@ module.exports.signupUser = async (req, res) => {
             otpExpiry: Date.now() + 5 * 60 * 1000
         };
 
+
         // Send Email
-        await sendOTP(email, otp, username);
+        try {
+            await sendOTP(email, otp, username);
+        } catch (err) {
+            req.flash("error", "Failed to send OTP");
+            return res.redirect("/signup");
+        }
 
         req.flash("success", "OTP sent to your email");
         // res.send("Page Found");
@@ -85,7 +93,7 @@ module.exports.verifyOTP = async (req, res) => {
         isVerified: true
     });
 
-  const registeredUser = await User.register(newUser, signupData.password);
+    const registeredUser = await User.register(newUser, signupData.password);
 
     delete req.session.signupData;
 
